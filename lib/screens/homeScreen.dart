@@ -1,3 +1,4 @@
+import 'package:bitirme_parent_app/widgets/bottom_navigator.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -156,6 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
+      bottomNavigationBar: const BottomNavigator(selectedIndex: 0),
     );
   }
   Padding BlogKutu(String photo) {
@@ -213,6 +215,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+        
     );
   }
 }
