@@ -211,7 +211,7 @@ class _BoardingScreenState extends State<BoardingScreen> {
         onTap: () async {
           final storage = Storage();
           await storage.firstLaunched();
-          GoRouter.of(context).replace("/home");
+          GoRouter.of(context).replace("/login");
         },
         child: Container(
           width: 280,
