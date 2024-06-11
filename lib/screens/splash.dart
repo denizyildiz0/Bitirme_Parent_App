@@ -13,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
     //hafıza okuma dil tema
 
     Future.delayed(const Duration(milliseconds: 2500), () {
-      context.go("/home");
+      context.go("/boarding");
     });
   }
 
