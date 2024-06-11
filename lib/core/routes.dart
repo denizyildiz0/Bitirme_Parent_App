@@ -43,5 +43,10 @@ final routes = GoRouter(
       path: '/register',
       builder: (context, state) => const RegisterScreen(),
     ),
+    GoRoute(
+      path: '/sor',
+      builder: (context, state) => const SoruSorScreen(),
+    ),
+    
   ],
 );
