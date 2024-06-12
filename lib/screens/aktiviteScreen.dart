@@ -1,6 +1,6 @@
-import 'package:bitirme_parent_app/blog/blogScreen.dart';
+
 import 'package:bitirme_parent_app/etkinlikler/etkinlik.dart';
-import 'package:bitirme_parent_app/screens/profile.dart';
+
 import 'package:bitirme_parent_app/screens/soruSor.dart';
 import 'package:bitirme_parent_app/sohbet/sohbet_kart.dart';
 import 'package:bitirme_parent_app/songs/songScreen.dart';
@@ -167,12 +167,10 @@ Widget getSelectedWidget({required int index}) {
     switch (index) {
       case 1:
         return const SoruSorScreen();
-      case 2:
-        return const BlogScreen();
+      
       case 3:
         return const AktiviteScreen();
-      case 4:
-        return const ProfileScreen();
+      
     }
     return Container();
   }

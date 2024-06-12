@@ -17,10 +17,7 @@ class _SohbetKartlariScreenState extends State<SohbetKartlariScreen> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(
-              'Sohbet Kartları Screen',
-              style: TextStyle(color: Colors.white),
-            ),
+            SizedBox(width: 260,),
             InkWell(
               onTap: () {
                 GoRouter.of(context).push('/sorbana');

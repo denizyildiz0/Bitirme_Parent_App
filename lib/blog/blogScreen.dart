@@ -1,9 +1,13 @@
 import 'package:bitirme_parent_app/blog/blog_detay.dart';
+import 'package:bitirme_parent_app/blog/blog_detay_provider.dart';
 import 'package:bitirme_parent_app/blog/blog_list.dart';
+import 'package:bitirme_parent_app/screens/aktiviteScreen.dart';
+import 'package:bitirme_parent_app/screens/homeScreen.dart';
+import 'package:bitirme_parent_app/screens/profile.dart';
+import 'package:bitirme_parent_app/screens/soruSor.dart';
 import 'package:bitirme_parent_app/widgets/bottom_navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'blog_detay_provider.dart';
 
 class BlogScreen extends StatefulWidget {
   const BlogScreen({Key? key}) : super(key: key);
@@ -39,7 +43,6 @@ class _BlogScreenState extends State<BlogScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       
-        
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -104,4 +107,16 @@ class _BlogScreenState extends State<BlogScreen> {
   }
 }
 
-
+Widget getSelectedWidget({required int index}) {
+    switch (index) {
+      case 1:
+        return const SoruSorScreen();
+      case 2:
+        return const BlogScreen();
+      case 3:
+        return const AktiviteScreen();
+      case 4:
+        return const ProfileScreen();
+    }
+    return Container();
+  }

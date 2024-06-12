@@ -1,3 +1,4 @@
+
 import 'package:bitirme_parent_app/blog/blogScreen.dart';
 import 'package:bitirme_parent_app/screens/aktiviteScreen.dart';
 import 'package:bitirme_parent_app/screens/homeScreen.dart';
@@ -41,7 +42,7 @@ final routes = GoRouter(
     ),
     GoRoute(
       path: '/login',
-      builder: (context, state) => const LoginScreen(),
+      builder: (context, state) =>  LoginScreen(),
     ),
     GoRoute(
       path: '/register',

@@ -1,6 +1,7 @@
 import 'package:bitirme_parent_app/blog/blog_detay_provider.dart';
 import 'package:bitirme_parent_app/components/neu_box.dart';
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
 class BlogDetayScreen extends StatelessWidget {

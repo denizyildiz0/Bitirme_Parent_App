@@ -36,6 +36,33 @@ class Storage {
     await storage.setBool("runned", true);
   }
 
+  // Uygulama için dil ve kararlı mod seçeneklerini depolamak için kullanılan fonksiyon
+  setConfig({String? language, bool? darkMode}) async {
+    final SharedPreferences storage = await SharedPreferences.getInstance();
+
+    // Eğer "language" parametresi varsa, "language" anahtarına değer atanır
+    if (language != null) {
+      await storage.setString("language", language);
+    }
+
+    // Eğer "darkMode" parametresi varsa, "darkMode" anahtarına değer atanır
+    if (darkMode != null) {
+      await storage.setBool("darkMode", darkMode);
+    }
+  }
+
+  // Uygulama için dil ve kararlı mod seçeneklerini almak için kullanılan fonksiyon
+  getConfig() async {
+    final SharedPreferences storage = await SharedPreferences.getInstance();
+
+    // "language" ve "darkMode" anahtarlarına sahip değerler alınır
+    return {
+      "language": storage.getString("language"),
+      "darkMode": storage.getBool("darkMode"),
+    };
+  }
+
+ 
   // Uygulama verilerini temizlemek için kullanılan fonksiyon
   clearStorage() async {
     final SharedPreferences storage = await SharedPreferences.getInstance();
