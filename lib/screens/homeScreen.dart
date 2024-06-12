@@ -1,3 +1,4 @@
+import 'package:bitirme_parent_app/core/locazilations.dart';
 import 'package:bitirme_parent_app/widgets/bottom_navigator.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Günün Sözü",
+                      AppLocalizations.of(context).getTranslate("word"),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -44,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: 20),
                 Text(
-                  "Önerilen Ebeveyn Çözümleri",
+                  AppLocalizations.of(context).getTranslate("recommend"),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -68,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(height: 20),
                 Text(
-                  "Popüler Aramalar",
+                   AppLocalizations.of(context).getTranslate("popular"),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -79,20 +80,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      BlogArama("Hırçınlık"),
-                      BlogArama("Zorbalık"),
-                      BlogArama("Sınır Koyma"),
-                      BlogArama("Tırnak Yeme"),
-                      BlogArama("Üstün Zeka"),
-                      BlogArama("Mükemmelliyetçilik"),
-                      BlogArama("İnatçılık"),
-                      BlogArama("Utangaçlık"),
+                      BlogArama(AppLocalizations.of(context).getTranslate("stubbornness"),),
+                      BlogArama(AppLocalizations.of(context).getTranslate("tyranny")),
+                      BlogArama(AppLocalizations.of(context).getTranslate("borderist")),
+                      BlogArama(AppLocalizations.of(context).getTranslate("nail biting")),
+                      BlogArama(AppLocalizations.of(context).getTranslate("superior mind")),
+                      BlogArama(AppLocalizations.of(context).getTranslate("perfectionism")),
+                      BlogArama(AppLocalizations.of(context).getTranslate("stubbornness")),
+                      BlogArama(AppLocalizations.of(context).getTranslate("shyness")),
                     ],
                   ),
                 ),
                 SizedBox(height: 6),
                 Text(
-                  "Eğlence Zamanı...",
+                  AppLocalizations.of(context).getTranslate("fun"),
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
@@ -118,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Bu Haftanın Bülteni",
+                      AppLocalizations.of(context).getTranslate("news"),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -135,7 +136,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     SizedBox(height: 20),
                     Text(
-                      "Öneri ve İstekler İçin",
+                      AppLocalizations.of(context).getTranslate("request"),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,

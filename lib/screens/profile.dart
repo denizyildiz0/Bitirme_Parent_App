@@ -149,7 +149,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 Center(
                   child: Text(
-                    "Alessi Clark",
+                     AppLocalizations.of(context).getTranslate("user information"),
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
@@ -168,11 +168,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     SizedBox(height: 5),
                     Text(
-                      "K U L L A N I C I    B İ L G İ L E R İ",
-                      style: TextStyle(
+                      AppLocalizations.of(context).getTranslate("e-mail"),
+                     style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 13,
-                          color: Colors.black87),
+                          fontSize: 12,
+                          color: Colors.black54),
                     ),
                     SizedBox(height: 12),
 
@@ -188,7 +188,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(height: 7),
                     Divider(),
                     Text(
-                      "ŞİFRE",
+                      AppLocalizations.of(context).getTranslate("password"),
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
@@ -206,7 +206,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(height: 7),
                     Divider(),
                     Text(
-                      "AYARLAR",
+                      AppLocalizations.of(context).getTranslate("settings"),
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
@@ -251,7 +251,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: TextButton(
                         onPressed: clearDataIOS,
                         child: Text(
-                          "Kullanıcıyı Sil",
+                          AppLocalizations.of(context).getTranslate("delete user"),
                           style: TextStyle(
                               color: Color.fromARGB(221, 82, 43, 239)),
                         ),
@@ -271,7 +271,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             const Color.fromARGB(255, 218, 217, 217),
                       ),
                       child: Text(
-                        "Çıkış Yap",
+                        AppLocalizations.of(context).getTranslate("log out"),
                         style:
                             TextStyle(color: Color.fromARGB(221, 82, 43, 239)),
                       ),

@@ -1,3 +1,4 @@
+import 'package:bitirme_parent_app/core/locazilations.dart';
 import 'package:bitirme_parent_app/core/themess.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +11,7 @@ import 'package:bitirme_parent_app/songs/playlist_provider.dart';
 import 'package:bitirme_parent_app/tarifler/tarif_cocuk_provider.dart';
 import 'package:bitirme_parent_app/tarifler/tarif_provider.dart';
 import 'package:bitirme_parent_app/themes/theme_provider.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/routes.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -51,7 +52,17 @@ class MyApp extends StatelessWidget {
           themeMode: state.darkMode ? ThemeMode.dark : ThemeMode.light,
           theme: lightTheme,
           darkTheme: darkTheme,
-
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('en', 'US'),
+            Locale('tr', 'TR'),
+          ],
+          locale: Locale(state.language),
         );
       }),
     );

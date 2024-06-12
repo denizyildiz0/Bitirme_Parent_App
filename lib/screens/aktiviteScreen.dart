@@ -9,6 +9,8 @@ import 'package:bitirme_parent_app/widgets/bottom_navigator.dart';
 
 import 'package:flutter/material.dart';
 
+import '../core/locazilations.dart';
+
 class AktiviteScreen extends StatefulWidget {
   const AktiviteScreen({Key? key});
 
@@ -53,13 +55,13 @@ class _AktiviteScreenState extends State<AktiviteScreen> {
                   children: [
                     _buildClickableImage(
                       imagePath: "assets/images/s.jpg",
-                      text: "SOHBET KARTLARI",
+                      text:  AppLocalizations.of(context).getTranslate("chat cards"),
                       index: 0,
                     ),
                     SizedBox(width: 20),
                     _buildClickableImage(
                       imagePath: "assets/images/etkinlik.jpg",
-                      text: "ETKİNLİKLER",
+                      text:  AppLocalizations.of(context).getTranslate("events"),
                       index: 1,
                     ),
                   ],
@@ -69,13 +71,13 @@ class _AktiviteScreenState extends State<AktiviteScreen> {
                   children: [
                     _buildClickableImage(
                       imagePath: "assets/images/c.jpg",
-                      text: "ÇOCUK ŞARKILARI",
+                      text:  AppLocalizations.of(context).getTranslate("children songs"),
                       index: 2,
                     ),
                     SizedBox(width: 20),
                     _buildClickableImage(
                       imagePath: "assets/images/h.jpg",
-                      text: "ATIŞTIRMALIK TARİF",
+                      text:  AppLocalizations.of(context).getTranslate("snack recipes"),
                       index: 3,
                     ),
                   ],
@@ -90,7 +92,7 @@ class _AktiviteScreenState extends State<AktiviteScreen> {
           right: 10,
           child: Center(
             child: Text(
-              "Hadi Biraz Eğlence",
+              AppLocalizations.of(context).getTranslate("let's have some fun"),
               style: TextStyle(
                 color: Color.fromARGB(197, 36, 36, 36),
                 fontSize: 20,
@@ -163,17 +165,7 @@ class _AktiviteScreenState extends State<AktiviteScreen> {
 }
 
 
-Widget getSelectedWidget({required int index}) {
-    switch (index) {
-      case 1:
-        return const SoruSorScreen();
-      
-      case 3:
-        return const AktiviteScreen();
-      
-    }
-    return Container();
-  }
+
 
 
 
