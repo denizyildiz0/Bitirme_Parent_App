@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            GoRouter.of(context).go("/letin");
+            // GoRouter.of(context).go("/letin");
           },
         ),
       ),
@@ -108,13 +108,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Center(
-            //   child: Image.asset(
-            //     'assets/images/slio.jpg',
-            //     height: 100,
-            //     width: 100,
-            //   ),
-            // ),
+            
             SizedBox(height: 20),
             Text(
               'Login to your account',

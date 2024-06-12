@@ -26,8 +26,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void initState() {
+    init();
     super.initState();
     clientCubit = context.read<ClientCubit>();
+  }
+  
+  String? mail;
+  String? password;
+
+  init() async {
+    await SecureStorage().readSecureData("mail");
+    await SecureStorage().readSecureData("password");
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    mail = prefs.getString('usernameLogin');
+    password = prefs.getString("passwordLogin");
+    setState(() {});
   }
 
   clearData() {
@@ -176,15 +189,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     SizedBox(height: 12),
 
-                    SizedBox(height: 5),
-                    // Text(
-                    //   AppLocalizations.of(context)
-                    //       .getTranslate('E-Mail: $mail'),
-                    //   style: GoogleFonts.comfortaa(
-                    //     fontSize: 18,
-                    //     fontWeight: FontWeight.bold,
-                    //   ),
-                    // ),
+                    
+                    Text(
+                      AppLocalizations.of(context)
+                          .getTranslate('$mail'),
+                      style: GoogleFonts.comfortaa(
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     SizedBox(height: 7),
                     Divider(),
                     Text(
@@ -195,14 +208,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: Colors.black54),
                     ),
                     SizedBox(height: 5),
-                    // Text(
-                    //   AppLocalizations.of(context)
-                    //       .getTranslate('Şifre: $password'),
-                    //   style: GoogleFonts.comfortaa(
-                    //     fontSize: 10,
-                    //     fontWeight: FontWeight.bold,
-                    //   ),
-                    // ),
+                    Text(
+                      AppLocalizations.of(context)
+                          .getTranslate('$password'),
+                      style: GoogleFonts.comfortaa(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     SizedBox(height: 7),
                     Divider(),
                     Text(
