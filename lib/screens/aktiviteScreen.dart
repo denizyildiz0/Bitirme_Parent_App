@@ -32,18 +32,7 @@ class _AktiviteScreenState extends State<AktiviteScreen> {
     body: Stack(
       
       children: [
-        Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                 Color.fromARGB(206, 255, 255, 255),
-                 Color.fromARGB(255, 255, 255, 255),
-                ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
+        
         Center(
           child: Padding(
             padding: const EdgeInsets.all(35.0),
@@ -94,7 +83,9 @@ class _AktiviteScreenState extends State<AktiviteScreen> {
             child: Text(
               AppLocalizations.of(context).getTranslate("let's have some fun"),
               style: TextStyle(
-                color: Color.fromARGB(197, 36, 36, 36),
+                color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -135,7 +126,9 @@ class _AktiviteScreenState extends State<AktiviteScreen> {
             Text(
               text,
               style: TextStyle(
-                color: Color.fromARGB(197, 36, 36, 36),
+                color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
                 fontSize: 13,
               ),
             ),

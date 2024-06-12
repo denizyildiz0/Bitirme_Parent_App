@@ -45,14 +45,7 @@ class _BlogScreenState extends State<BlogScreen> {
       
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(206, 255, 255, 255),
-              Color.fromARGB(255, 255, 255, 255),
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
+         
         ),
         child: Consumer<BlogProvider>(
           builder: (context, value, child) {

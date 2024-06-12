@@ -18,7 +18,9 @@ class BottomNavigator extends StatelessWidget {
     return Container(
       height: 75,
       decoration: BoxDecoration(
-        color: Colors.white, // Arka planı beyaz yap
+        color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.black
+                      : Colors.white, 
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
@@ -34,22 +36,37 @@ class BottomNavigator extends StatelessWidget {
           IconButton(
             onPressed: () => context.go("/home"),
             icon: const Icon(Icons.home_outlined),
+            color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black, 
           ),
           IconButton(
             onPressed: () => context.go("/sor"),
             icon: const Icon(Icons.question_mark),
+            color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black, 
           ),
           IconButton(
             onPressed: () => context.go("/blog"),
             icon: const Icon(Icons.menu_book_outlined),
+            color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black, 
           ),
           IconButton(
             onPressed: () => context.go("/aktivite"),
             icon: const Icon(Icons.interests_outlined),
+            color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black, 
           ),
           IconButton(
             onPressed: () => context.go("/profile"),
             icon: const Icon(Icons.person_2_outlined),
+            color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black, 
           ),
         ],
       ),

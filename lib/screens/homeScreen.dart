@@ -14,7 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      
       body: Padding(
         padding: const EdgeInsets.only(top: 70.0),
         child: SingleChildScrollView(
@@ -29,7 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        color: Colors.black,
+                        color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
                       ),
                     ),
                   ],
@@ -49,7 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Colors.black,
+                    color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
                   ),
                 ),
                 SizedBox(height: 6),
@@ -73,7 +77,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                   color: Colors.black,
+                   color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
                   ),
                 ),
                 SingleChildScrollView(
@@ -97,7 +103,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Colors.black,
+                    color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
                   ),
                 ),
                 SingleChildScrollView(
@@ -123,7 +131,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                        color: Colors.black,
+                        color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
                       ),
                     ),
                     SizedBox(height: 10),
@@ -140,7 +150,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
-                        color: Colors.black,
+                        color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
                       ),
                     ),
                     SizedBox(height: 15),
