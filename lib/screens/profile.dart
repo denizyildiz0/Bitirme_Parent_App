@@ -1,435 +1,300 @@
 import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 import 'package:bitirme_parent_app/bloc/client_cubit.dart';
 import 'package:bitirme_parent_app/core/locazilations.dart';
+import 'package:bitirme_parent_app/core/utils.dart';
 import 'package:bitirme_parent_app/screens/loginScreen.dart';
 import 'package:bitirme_parent_app/widgets/bottom_navigator.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:go_router/go_router.dart';
+import 'package:bitirme_parent_app/components/neu_box2.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-
-
-
-// // Uygulama için güvenli veri depolama işlemlerini yöneten sınıf
-// class SecureStorage {
-//   // FlutterSecureStorage nesnesi oluşturulur
-//   final FlutterSecureStorage storage = const FlutterSecureStorage();
-
-//   // Veri depolamak için kullanılan fonksiyon
-//   writeSecureData(String key, String value) async {
-//     await storage.write(key: key, value: value);
-//   }
-
-//   // Veriyi okumak için kullanılan fonksiyon
-//   readSecureData(String key) async {
-//     // Veriyi okurken ekrana yazdırılır
-//     String value = await storage.read(key: key) ?? "Data is not found!";
-//     print('Data read from secure storage: $value');
-//   }
-
-//   // Veriyi silmek için kullanılan fonksiyon
-//   deleteSecureData(String key) async {
-//     await storage.delete(key: key);
-//   }
-// }
-
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
-  // void navigateToLogin(BuildContext context) {
-  //   Navigator.pushAndRemoveUntil(
-  //     context,
-  //     MaterialPageRoute(builder: (context) => LoginScreen()),
-  //     (Route<dynamic> route) => false,
-  //   );
-  // }
-
-  
-  
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late ClientCubit clientCubit;
-  File? _image;
-  final ImagePicker picker = ImagePicker();
 
-//  @override
-//   void initState() {
-//     init();
-//     super.initState();
-//     clientCubit = context.read<ClientCubit>();
-    
-//   }
+  @override
+  void initState() {
+    super.initState();
+    clientCubit = context.read<ClientCubit>();
+  }
 
-  // String? mail;
-  // String? password;
+  clearData() {
+    if (kIsWeb) {
+      //web
+      clearDataIOS();
+    } else {
+      if (Platform.isIOS || Platform.isMacOS) {
+        clearDataIOS();
+      } else {
+        clearDataMaterial();
+      }
+    }
+  }
 
-  // init() async {
-  //   await SecureStorage().readSecureData("mail");
-  //   await SecureStorage().readSecureData("password");
-  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   mail = prefs.getString('usernameLogin');
-  //   password = prefs.getString("passwordLogin");
-  //   setState(() {});
-  // }
+  clearDataIOS() {
+    showCupertinoDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => CupertinoAlertDialog(
+        title: Row(children: [Icon(Icons.warning), Text("Uyarı!")]),
+        content: Text("Kullanıcıyı sileceksiniz emin misiniz?"),
+        actions: [
+          CupertinoDialogAction(
+            onPressed: () async {
+              final SharedPreferences storage =
+                  await SharedPreferences.getInstance();
+              await storage.clear();
+              if (context.mounted) {
+                context.go('/');
+              }
+            },
+            child: Text("Yes"),
+            isDestructiveAction: true,
+          ),
+          CupertinoDialogAction(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text("No"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  clearDataMaterial() async {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => AlertDialog(
+        title: Row(children: [Icon(Icons.warning), Text("Uyarı!")]),
+        content: Text("Kullanıcıyı sileceksiniz emin misiniz?"),
+        actions: [
+          ElevatedButton(
+            onPressed: () async {
+              final SharedPreferences storage =
+                  await SharedPreferences.getInstance();
+              await storage.clear();
+              if (context.mounted) {
+                context.go('/');
+              }
+            },
+            child: Text("Yes"),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text("No"),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      body: Stack(
+        children: [
+          Positioned(
+            top: 0,
+            child: Opacity(
+              opacity: 0.6,
+              child: SvgPicture.asset(
+                "assets/images/wave-10.svg",
+                height: 250,
+                width: 150,
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 450),
+            child: Center(
+              child: Container(
+                padding: EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                  gradient: LinearGradient(colors: [
+                    Colors.purple,
+                    Colors.orange,
+                    Color.fromARGB(255, 151, 145, 232),
+                  ]),
+                  shape: BoxShape.circle,
+                ),
+                child: Container(
+                  padding: EdgeInsets.all(1),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle, color: Colors.white),
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage("assets/images/kadin1.jpeg"),
+                    radius: 80,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 240),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 27),
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: AssetImage('assets/images/' +
-                                (Theme.of(context).brightness == Brightness.dark
-                                    ? 'logo_white.png'
-                                    : 'logo.png')),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Gap(210),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 45),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 2.0),
-                            child: IconButton(
-                              onPressed: () {
-                                // if (clientCubit.state.language == "tr") {
-                                //   clientCubit.changeLanguage(language: "en");
-                                // } else {
-                                //   clientCubit.changeLanguage(language: "tr");
-                                // }
-                              },
-                              icon: Icon(Icons.language),
-                            ),
-                          ),
-                          // if (clientCubit.state.darkMode)
-                          //   IconButton(
-                          //       onPressed: () {
-                          //         clientCubit.changeDarkMode(darkMode: false);
-                          //       },
-                          //       icon: Icon(Icons.sunny))
-                          // else
-                          //   IconButton(
-                          //       onPressed: () {
-                          //         clientCubit.changeDarkMode(darkMode: true);
-                          //       },
-                          //       icon: Icon(Icons.nightlight)),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Gap(20),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Center(
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          shape: BoxShape.rectangle,
-                          color: Colors.white,
-                          border: Border.all(color: Colors.grey, width: 1.3),
-                        ),
-                        child: _image != null
-                            ? ClipRRect(
-                                borderRadius: BorderRadius.circular(50),
-                                child: Image.file(
-                                  File(_image!.path),
-                                  fit: BoxFit.cover,
-                                ),
-                              )
-                            : const SizedBox(),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 140,
-                      child: GestureDetector(
-                        onTap: () {
-                          //  _pickImage();
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            shape: BoxShape.rectangle,
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.white
-                                    : Colors.black,
-                            border: Border.all(
-                              color: Theme.of(context).brightness ==
-                                      Brightness.dark
-                                  ? Colors.white
-                                  : Colors.black,
-                              width: 0.3,
-                            ),
-                          ),
-                          child: Icon(
-                            Icons.edit,
-                            color:
-                                Theme.of(context).brightness == Brightness.light
-                                    ? Colors.white
-                                    : Colors.black,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Gap(10),
                 Center(
-                  child: Column(
-                    children: [
-                      // Text(
-                      //   AppLocalizations.of(context)
-                      //       .getTranslate('E-Mail: $mail'),
-                      //   style: GoogleFonts.comfortaa(
-                      //     fontSize: 18,
-                      //     fontWeight: FontWeight.bold,
-                      //   ),
-                      // ),
-                      // Text(
-                      //   AppLocalizations.of(context)
-                      //       .getTranslate('Şifre: $password'),
-                      //   style: GoogleFonts.comfortaa(
-                      //     fontSize: 10,
-                      //     fontWeight: FontWeight.bold,
-                      //   ),
-                      // ),
-                    ],
+                  child: Text(
+                    "Alessi Clark",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                        color: Colors.black87),
                   ),
-                ),
-                Gap(10),
-                Container(
-                  height: 1,
-                  color: const Color.fromARGB(255, 216, 216,
-                      216), // Optional: You can change the color of the line
-                ),
-                SizedBox(height: 20),
-                GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).go('/edit');
-                    },
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.person_outline,
-                          size: 20,
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black,
-                        ),
-                        Gap(5),
-                        Text(
-                          AppLocalizations.of(context)
-                              .getTranslate("Profil Düzenle"),
-                          style: GoogleFonts.poppins(
-                            fontSize: 15,
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.white
-                                    : Colors.black,
-                          ),
-                        ),
-                      ],
-                    )),
-                Gap(20),
-                GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).go('/address');
-                    },
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.location_on_outlined,
-                          size: 20,
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black,
-                        ),
-                        Gap(5),
-                        Text(
-                          AppLocalizations.of(context).getTranslate("Adres"),
-                          style: GoogleFonts.poppins(
-                            fontSize: 15,
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.white
-                                    : Colors.black,
-                          ),
-                        ),
-                      ],
-                    )),
-                Gap(20),
-                GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).go('/notification');
-                    },
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.notifications_outlined,
-                          size: 20,
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black,
-                        ),
-                        Gap(5),
-                        Text(
-                          AppLocalizations.of(context)
-                              .getTranslate("Bildirimler"),
-                          style: GoogleFonts.poppins(
-                            fontSize: 15,
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.white
-                                    : Colors.black,
-                          ),
-                        ),
-                      ],
-                    )),
-                Gap(20),
-                GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).go('/security');
-                    },
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.verified_user_outlined,
-                          size: 20,
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black,
-                        ),
-                        Gap(5),
-                        Text(
-                          AppLocalizations.of(context).getTranslate("Güvenlik"),
-                          style: GoogleFonts.poppins(
-                            fontSize: 15,
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.white
-                                    : Colors.black,
-                          ),
-                        ),
-                      ],
-                    )),
-                Gap(20),
-                GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).go('/privacy');
-                  },
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.lock_outline,
-                        size: 20,
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? Colors.white
-                            : Colors.black,
-                      ),
-                      Gap(5),
-                      Text(
-                        AppLocalizations.of(context)
-                            .getTranslate("Politikalar"),
-                        style: GoogleFonts.poppins(
-                          fontSize: 15,
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Gap(20),
-                GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).go('/help');
-                  },
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.info_outline,
-                        size: 20,
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? Colors.white
-                            : Colors.black,
-                      ),
-                      Gap(5),
-                      Text(
-                        AppLocalizations.of(context).getTranslate("Yardım"),
-                        style: GoogleFonts.poppins(
-                          fontSize: 15,
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Gap(20),
-                
-                Gap(20),
-                GestureDetector(
-                  onTap: () {
-                    GoRouter.of(context).go('/boarding');
-                  },
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.logout_outlined,
-                        size: 20,
-                        color: Colors.red,
-                      ),
-                      Gap(5),
-                      Text(
-                        AppLocalizations.of(context)
-                            .getTranslate("Oturumu Kapat"),
-                        style: GoogleFonts.poppins(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                            color: Colors.red),
-                      ),
-                    ],
-                  ),
-                ),
+                )
               ],
             ),
           ),
-        ),
-        bottomNavigationBar: const BottomNavigator(selectedIndex: 4),
-      );
+          Padding(
+            padding: const EdgeInsets.only(top: 160),
+            child: Center(
+              child: NeuBoxx(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 5),
+                    Text(
+                      "K U L L A N I C I    B İ L G İ L E R İ",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(height: 12),
+
+                    SizedBox(height: 5),
+                    // Text(
+                    //   AppLocalizations.of(context)
+                    //       .getTranslate('E-Mail: $mail'),
+                    //   style: GoogleFonts.comfortaa(
+                    //     fontSize: 18,
+                    //     fontWeight: FontWeight.bold,
+                    //   ),
+                    // ),
+                    SizedBox(height: 7),
+                    Divider(),
+                    Text(
+                      "ŞİFRE",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                          color: Colors.black54),
+                    ),
+                    SizedBox(height: 5),
+                    // Text(
+                    //   AppLocalizations.of(context)
+                    //       .getTranslate('Şifre: $password'),
+                    //   style: GoogleFonts.comfortaa(
+                    //     fontSize: 10,
+                    //     fontWeight: FontWeight.bold,
+                    //   ),
+                    // ),
+                    SizedBox(height: 7),
+                    Divider(),
+                    Text(
+                      "AYARLAR",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                          color: Colors.black54),
+                    ),
+                   
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 45.0),
+                          child: IconButton(
+                            onPressed: () {
+                              if (clientCubit.state.language == "tr") {
+                                clientCubit.changeLanguage(language: "en");
+                              } else {
+                                clientCubit.changeLanguage(language: "tr");
+                              }
+                            },
+                            icon: Padding(
+                              padding: const EdgeInsets.only(left: 100.0),
+                              child: Icon(Icons.language),
+                            ),
+                          ),
+                        ),
+                        if (clientCubit.state.darkMode)
+                          IconButton(
+                              onPressed: () {
+                                clientCubit.changeDarkMode(darkMode: false);
+                              },
+                              icon: Icon(Icons.sunny))
+                        else
+                          IconButton(
+                              onPressed: () {
+                                clientCubit.changeDarkMode(darkMode: true);
+                              },
+                              icon: Icon(Icons.nightlight)),
+                      ],
+                    ),
+                   
+                    Divider(),
+                    InkWell(
+                      child: TextButton(
+                        onPressed: clearDataIOS,
+                        child: Text(
+                          "Kullanıcıyı Sil",
+                          style: TextStyle(
+                              color: Color.fromARGB(221, 82, 43, 239)),
+                        ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color.fromARGB(255, 218, 217, 217)),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        context.go('/');
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            const Color.fromARGB(255, 218, 217, 217),
+                      ),
+                      child: Text(
+                        "Çıkış Yap",
+                        style:
+                            TextStyle(color: Color.fromARGB(221, 82, 43, 239)),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 1,
+            child: Opacity(
+              opacity: 0.2,
+              child: SvgPicture.asset(
+                "assets/images/wave-8.svg",
+                height: 160,
+                width: 170,
+              ),
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: const BottomNavigator(selectedIndex: 4),
+    );
   }
 }

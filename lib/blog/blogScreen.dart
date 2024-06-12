@@ -116,7 +116,7 @@ Widget getSelectedWidget({required int index}) {
       case 3:
         return const AktiviteScreen();
       case 4:
-        return const ProfileScreen();
+        return  ProfileScreen();
     }
     return Container();
   }

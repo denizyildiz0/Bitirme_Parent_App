@@ -16,7 +16,7 @@ class BottomNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
+      height: 75,
       decoration: BoxDecoration(
         color: Colors.white, // Arka planı beyaz yap
         boxShadow: [
