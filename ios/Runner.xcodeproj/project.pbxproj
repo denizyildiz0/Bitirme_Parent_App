@@ -97,7 +97,6 @@
 				A8019F24AA78BEEC8DB96D9E /* Pods-RunnerTests.release.xcconfig */,
 				6C01CEBDBB81154610D3EF03 /* Pods-RunnerTests.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -702,7 +701,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.bitirmeParentApp;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.deniz.bitirmeParentApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
